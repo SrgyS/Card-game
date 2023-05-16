@@ -1,0 +1,18 @@
+.btn {
+  width: 246px;
+  height: 50px;
+  background-color: $btn-color;
+  color: $white-color;
+  border: none;
+  border-radius: 12px;
+  font-size: 24px;
+  line-height: 32px;
+  transition: transform 0.5s ease;
+  @media (hover: hover), (pointer: fine) {
+    &:hover {
+      background-color: $btn-hover;
+      //   transition: transform 0.5s ease;
+      transform: scale(1.02);
+    }
+  }
+}
