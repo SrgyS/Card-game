@@ -1,4 +1,4 @@
-.level-box {
+.difficulty-box {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,7 @@
 
   &__item {
     box-sizing: border-box;
+    cursor: pointer;
     color: rgba(0, 128, 193, 1);
     display: flex;
     align-items: center;
@@ -36,14 +37,20 @@
     font-size: 64px;
     line-height: 72px;
     border-radius: 12px;
-    transition: border 0.2s ease;
+    transition: all 0.2s ease;
     @media (hover: hover), (pointer: fine) {
       &:hover {
         border: 2px solid rgba(0, 128, 193, 1);
       }
     }
+    &:active {
+      transform: scale(1.02);
+    }
   }
   .btn {
     margin-top: 67px;
+  }
+  .selected {
+    border: 2px solid rgba(0, 128, 193, 1);
   }
 }
