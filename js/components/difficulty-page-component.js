@@ -1,8 +1,7 @@
-import { game } from "../script.js"
-import { CARDS_PAGE } from "../routes.js";
+import { game } from '../script.js';
+import { CARDS_PAGE } from '../routes.js';
 
-export function renderDifficultyPageComponent ({appEl, goToPage}) {
-
+export function renderDifficultyPageComponent({ appEl, goToPage }) {
     const appHtml = `<form class="difficulty-form">
                     <div class="difficulty-box">
                         <p class="difficulty-box__title">Выбери сложность</p>
@@ -25,80 +24,80 @@ export function renderDifficultyPageComponent ({appEl, goToPage}) {
                     </div>
                 </form>`;
 
-appEl.innerHTML = appHtml;
+    appEl.innerHTML = appHtml;
 
-            //         const setError = (message) => {
-            //             appEl.querySelector(".form-error").textContent = message;
-            //           };
+    //         const setError = (message) => {
+    //             appEl.querySelector(".form-error").textContent = message;
+    //           };
 
-            //   const difficultyBtnElements = document.querySelectorAll(".difficulty-box__item"); 
-            //   let selectedDifficultyBtn = null;    
+    //   const difficultyBtnElements = document.querySelectorAll(".difficulty-box__item");
+    //   let selectedDifficultyBtn = null;
 
-            //   difficultyBtnElements.forEach((difficultyBtnEl, index) => {
-            //     difficultyBtnEl.addEventListener('click', (e) => {
-            //         setError("")
-            //         if (selectedDifficultyBtn != null) {
-            //             selectedDifficultyBtn.classList.remove("selected")
-            //         }
-            //         difficultyBtnEl.classList.add("selected")
-            //         selectedDifficultyBtn = difficultyBtnEl;
+    //   difficultyBtnElements.forEach((difficultyBtnEl, index) => {
+    //     difficultyBtnEl.addEventListener('click', (e) => {
+    //         setError("")
+    //         if (selectedDifficultyBtn != null) {
+    //             selectedDifficultyBtn.classList.remove("selected")
+    //         }
+    //         difficultyBtnEl.classList.add("selected")
+    //         selectedDifficultyBtn = difficultyBtnEl;
 
-            //         game.difficulty = index + 1;
-            //         game.gameStatus = CARDS_PAGE;
-            //         game.cards = game.difficulty * 6
-                    
-            //         console.log(game)
-            //     })
-            //   })
+    //         game.difficulty = index + 1;
+    //         game.gameStatus = CARDS_PAGE;
+    //         game.cards = game.difficulty * 6
 
-            //   const startBtnEl = document.getElementById("start-btn")
+    //         console.log(game)
+    //     })
+    //   })
 
-            //   startBtnEl.addEventListener("click", (e) => {
-            //     if (game.difficulty == null){
-            //         setError('Выберите уровень сложности!')
-            //     } else {
-            //         goToPage(CARDS_PAGE)
-            //     }
-            //   })
+    //   const startBtnEl = document.getElementById("start-btn")
 
+    //   startBtnEl.addEventListener("click", (e) => {
+    //     if (game.difficulty == null){
+    //         setError('Выберите уровень сложности!')
+    //     } else {
+    //         goToPage(CARDS_PAGE)
+    //     }
+    //   })
 
-  const difficultyFormEl = appEl.querySelector(".difficulty-form");
-  const formErrorEl = appEl.querySelector(".form-error");
+    const difficultyFormEl = appEl.querySelector('.difficulty-form');
+    const formErrorEl = appEl.querySelector('.form-error');
 
-  const difficultyBtnElements = document.querySelectorAll(".difficulty-box__item"); 
-    let prevSelectedBtn = null;    
+    const difficultyBtnElements = document.querySelectorAll(
+        '.difficulty-box__item'
+    );
+    let prevSelectedBtn = null;
 
     difficultyBtnElements.forEach((difficultyBtnEl, index) => {
-      difficultyBtnEl.addEventListener('click', (e) => {
-          setError("")
-          if (prevSelectedBtn != null) {
-            prevSelectedBtn.classList.remove("selected")
-          }
-          difficultyBtnEl.classList.add("selected")
-          prevSelectedBtn = difficultyBtnEl;
-        })
-    })
+        difficultyBtnEl.addEventListener('click', (e) => {
+            setError('');
+            if (prevSelectedBtn != null) {
+                prevSelectedBtn.classList.remove('selected');
+            }
+            difficultyBtnEl.classList.add('selected');
+            prevSelectedBtn = difficultyBtnEl;
+        });
+    });
 
-  difficultyFormEl.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const selectedDifficultyBtn = difficultyFormEl.querySelector(
-      "input[name='difficulty']:checked"
-    );
+    difficultyFormEl.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedDifficultyBtn = difficultyFormEl.querySelector(
+            "input[name='difficulty']:checked"
+        );
 
-    if (!selectedDifficultyBtn) {
-      setError("Выберите уровень сложности!");
-      return;
+        if (!selectedDifficultyBtn) {
+            setError('Выберите уровень сложности!');
+            return;
+        }
+
+        const selectedDifficulty = parseInt(selectedDifficultyBtn.value);
+        game.difficulty = selectedDifficulty;
+        game.gameStatus = CARDS_PAGE;
+        game.cards = selectedDifficulty * 6;
+        goToPage(CARDS_PAGE);
+    });
+
+    function setError(message) {
+        formErrorEl.textContent = message;
     }
-
-    const selectedDifficulty = parseInt(selectedDifficultyBtn.value);
-    game.difficulty = selectedDifficulty;
-    game.gameStatus = CARDS_PAGE;
-    game.cards = selectedDifficulty * 6;
-    goToPage(CARDS_PAGE);
-  });
-
-  function setError(message) {
-    formErrorEl.textContent = message;
-  }
 }
-

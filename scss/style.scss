@@ -1,10 +1,15 @@
-@import "fonts";
-@import "abstracts/variables";
+@import 'fonts';
 
-@import "components/body";
-@import "components/main";
-@import "components/btn";
-@import "components/form-error";
+@import 'abstracts/variables';
 
-@import "pages/difficulty-box";
-@import "pages/cards";
+@import 'components/body';
+
+@import 'components/main';
+
+@import 'components/btn';
+
+@import 'components/form-error';
+
+@import 'pages/difficulty-box';
+
+@import 'pages/cards';
