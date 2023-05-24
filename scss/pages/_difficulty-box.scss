@@ -53,4 +53,7 @@
   .selected {
     border: 2px solid rgba(0, 128, 193, 1);
   }
+  input[type="radio"] {
+    display: none; /* скрыть стандартный инпут */
+  }
 }
