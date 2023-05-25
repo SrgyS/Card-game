@@ -99,6 +99,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    align-self: center;
 }
 
 .cards .small-suit {
@@ -211,4 +212,4 @@ body {
 .game .timer__dot {
     font-size: 64px;
     line-height: 72px;
-}
+} /*# sourceMappingURL=style.css.map */
