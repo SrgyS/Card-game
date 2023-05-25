@@ -1,8 +1,9 @@
 import { game } from '../script.js';
-import { CARDS_PAGE } from '../routes.js';
+import { GAME_PAGE } from '../routes.js';
 
 export function renderDifficultyPageComponent({ appEl, goToPage }) {
-    const appHtml = `<form class="difficulty-form">
+    const appHtml = `<div class="main">
+    <form class="difficulty-form">
                     <div class="difficulty-box">
                         <p class="difficulty-box__title">Выбери сложность</p>
                         <div class="difficulty-box__container">
@@ -22,7 +23,8 @@ export function renderDifficultyPageComponent({ appEl, goToPage }) {
                         <button type="submit" class="btn" id="start-btn">Старт</button>
                         <div class="form-error"></div>
                     </div>
-                </form>`;
+                </form>
+                </div>`;
 
     appEl.innerHTML = appHtml;
 
@@ -71,7 +73,7 @@ export function renderDifficultyPageComponent({ appEl, goToPage }) {
     difficultyBtnElements.forEach((difficultyBtnEl, index) => {
         difficultyBtnEl.addEventListener('click', (e) => {
             setError('');
-            if (prevSelectedBtn != null) {
+            if (prevSelectedBtn !== null) {
                 prevSelectedBtn.classList.remove('selected');
             }
             difficultyBtnEl.classList.add('selected');
@@ -92,9 +94,9 @@ export function renderDifficultyPageComponent({ appEl, goToPage }) {
 
         const selectedDifficulty = parseInt(selectedDifficultyBtn.value);
         game.difficulty = selectedDifficulty;
-        game.gameStatus = CARDS_PAGE;
+        game.gameStatus = GAME_PAGE;
         game.cards = selectedDifficulty * 6;
-        goToPage(CARDS_PAGE);
+        goToPage(GAME_PAGE);
     });
 
     function setError(message) {

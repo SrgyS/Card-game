@@ -50,6 +50,64 @@ body {
     padding: 10px;
 }
 
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.cards .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95px;
+    height: 133px;
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+    font-size: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    position: relative;
+}
+
+.cards .card img {
+    width: 100%;
+}
+
+.cards .card__top-left,
+.cards .card__down-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.cards .card__top-left {
+    top: 5px;
+    left: 6px;
+}
+
+.cards .card__down-right {
+    transform: rotate(180deg);
+    align-self: end;
+    top: 98px;
+    right: 6px;
+}
+
+.cards .card__center-suit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.cards .small-suit {
+    display: inline-block;
+    display: flex;
+    width: 6px;
+    height: 6px;
+}
+
 .difficulty-box {
     align-items: center;
     display: flex;
@@ -115,6 +173,42 @@ body {
     display: none; /* скрыть стандартный инпут */
 }
 
-.cards {
+.game {
+    padding: 20px 25px 50px;
     color: rgb(255 255 255);
+}
+
+.game__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.game .timer {
+    display: flex;
+}
+
+.game .timer__block {
+    display: flex;
+    flex-direction: column;
+}
+
+.game .timer__dot {
+    display: flex;
+    align-items: flex-end;
+}
+
+.game .timer__label {
+    font-size: 16px;
+    line-height: 16px;
+    text-align: end;
+    margin-right: 5px;
+}
+
+.game .timer #seconds,
+.game .timer #minutes,
+.game .timer__dot {
+    font-size: 64px;
+    line-height: 72px;
 }

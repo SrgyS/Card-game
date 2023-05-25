@@ -1,8 +1,8 @@
 import { renderDifficultyPageComponent } from './components/difficulty-page-component.js';
-import { renderCardsPageComponent } from './components/cards-page-component.js';
+import { renderGamePageComponent } from './components/game-page-component.js';
 import {
     DIFFICULTY_PAGE,
-    CARDS_PAGE,
+    GAME_PAGE,
     // RESULT_PAGE
 } from './routes.js';
 
@@ -20,7 +20,7 @@ const goToPage = (newPage) => {
     if (
         [
             DIFFICULTY_PAGE,
-            CARDS_PAGE,
+            GAME_PAGE,
             //   RESULT_PAGE,
         ].includes(newPage)
     ) {
@@ -29,7 +29,7 @@ const goToPage = (newPage) => {
             return renderApp();
         }
 
-        if (newPage === CARDS_PAGE) {
+        if (newPage === GAME_PAGE) {
             renderApp();
         }
 
@@ -53,8 +53,8 @@ export const renderApp = () => {
         });
     }
 
-    if (page === CARDS_PAGE) {
-        return renderCardsPageComponent({
+    if (page === GAME_PAGE) {
+        return renderGamePageComponent({
             appEl,
             game,
         });
