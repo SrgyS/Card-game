@@ -1,5 +1,6 @@
 import { game } from '../script.js';
 import { GAME_PAGE } from '../routes.js';
+import { generateDeck } from '../helpers.js';
 
 export function renderDifficultyPageComponent({ appEl, goToPage }) {
     const appHtml = `<div class="main">
@@ -95,7 +96,7 @@ export function renderDifficultyPageComponent({ appEl, goToPage }) {
         const selectedDifficulty = parseInt(selectedDifficultyBtn.value);
         game.difficulty = selectedDifficulty;
         game.gameStatus = GAME_PAGE;
-        game.cards = selectedDifficulty * 6;
+        game.cards = generateDeck(selectedDifficulty);
         goToPage(GAME_PAGE);
     });
 

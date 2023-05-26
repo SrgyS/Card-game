@@ -54,9 +54,11 @@ export const renderApp = () => {
     }
 
     if (page === GAME_PAGE) {
+        const playCards = game.cards;
         return renderGamePageComponent({
             appEl,
-            game,
+            goToPage,
+            playCards,
         });
     }
 

@@ -1,42 +1,31 @@
-export function renderGamePageComponent({ appEl, game }) {
-    const cardsDeck = [];
-    const suits = ['Diamonds', 'Hearts', 'Clubs', 'Spades'];
-    const ranks = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6'];
+import { DIFFICULTY_PAGE } from '../routes.js';
 
-    for (let suit in suits) {
-        for (let rank in ranks) {
-            cardsDeck.push({ suit: suits[suit], rank: ranks[rank] });
-        }
-    }
-    console.log(cardsDeck);
-    console.log(game.difficulty);
-    const cardsHTML = cardsDeck
-        .map((card) => {
-            console.log(card);
-            return `${
-                game.difficulty === 1
-                    ? `
-        <div class="card">
-        <img src="./scss/assets/img/card-back.png" alt="card back">
-        </div>`
-                    : `<div class="card">
-                            <div class="card__top-left">
-                                <span class="rank">${card.rank}</span>
-                                <span class="small-suit">${getSuitSymbol(
-                                    card.suit
-                                )}</span>
+export function renderGamePageComponent({ appEl, goToPage, playCards }) {
+    const cardsHTML = playCards
+        .map((card, index) => {
+            return `<div class="card visible" data-index="${index}">
+                            <div class="card__back">
+                                <img src="./scss/assets/img/card-back.png" alt="card back">
                             </div>
-                            <div class="card__center-suit">${getSuitSymbol(
-                                card.suit
-                            )}</div>
-                            <div class="card__down-right">
-                                <span class="rank">${card.rank}</span>
-                                <span class="small-suit">${getSuitSymbol(
+                            <div class="card__front">
+                                <div class="card__top-left">
+                                    <span class="rank">${card.rank}</span>
+                                    <span class="small-suit">${getSuitSymbol(
+                                        card.suit
+                                    )}</span>
+                                </div>
+                                <div class="card__center-suit">${getSuitSymbol(
                                     card.suit
-                                )}</span>
-                            </div>   
-                        </div>`
-            }`;
+                                )}
+                                </div>
+                                <div class="card__down-right">
+                                    <span class="rank">${card.rank}</span>
+                                    <span class="small-suit">${getSuitSymbol(
+                                        card.suit
+                                    )}</span>
+                                </div> 
+                            </div>  
+                        </div>`;
         })
         .join('');
 
@@ -59,6 +48,66 @@ export function renderGamePageComponent({ appEl, game }) {
   `;
 
     appEl.innerHTML = appHtml;
+
+    const cardElements = document.querySelectorAll('.card');
+    let selectedCards = [];
+    let matchedPairs = 0;
+
+    setTimeout(() => {
+        cardElements.forEach((cardEl) => {
+            cardEl.classList.remove('visible');
+        });
+    }, 5000);
+    console.log(playCards);
+
+    cardElements.forEach((cardEl, index) => {
+        cardEl.addEventListener('click', () => {
+            if (
+                selectedCards.length < 2 &&
+                !cardEl.classList.contains('matched') &&
+                !cardEl.classList.contains('visible')
+            ) {
+                cardEl.classList.add('visible');
+                selectedCards.push({ element: cardEl, index });
+
+                if (selectedCards.length === 2) {
+                    const card1 = playCards[selectedCards[0].index];
+                    const card2 = playCards[selectedCards[1].index];
+
+                    if (
+                        card1.rank === card2.rank &&
+                        card1.suit === card2.suit
+                    ) {
+                        selectedCards.forEach((selectedCard) => {
+                            setTimeout(() => {
+                                selectedCard.element.classList.add('matched');
+                            }, 600);
+                        });
+                        matchedPairs++;
+
+                        if (matchedPairs === playCards.length / 2) {
+                            setTimeout(() => {
+                                alert('Вы победили!');
+                                goToPage(DIFFICULTY_PAGE);
+                            }, 800);
+                        }
+                    } else {
+                        setTimeout(() => {
+                            alert('Вы проиграли!');
+                            goToPage(DIFFICULTY_PAGE);
+                        }, 800);
+                    }
+
+                    selectedCards = [];
+                }
+            }
+        });
+    });
+
+    document.querySelector('.game__btn').addEventListener('click', () => {
+        console.log('start');
+        goToPage(DIFFICULTY_PAGE);
+    });
 }
 
 function getSuitSymbol(suit) {
