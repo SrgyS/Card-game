@@ -1,28 +1,39 @@
-import { renderLevelPageComponent } from "./components/level-page-component.js";
+import { renderDifficultyPageComponent } from "./components/difficulty-page-component.js";
+import { renderCardsPageComponent } from "./components/cards-page-component.js";
 import {
-    LEVEL_PAGE,
-    // CARDS_PAGE,
+    DIFFICULTY_PAGE,
+    CARDS_PAGE,
     // RESULT_PAGE
 } from "./routes.js";
 
-let page = null;
+let page = null; 
+
+export const game = {
+  gameTime: 0,
+  difficulty: null,
+  gameStatus: page,
+  cards: [],
+  selectedCards: []
+};
+
+
 
 const goToPage = (newPage) => {
     if (
         [
-          LEVEL_PAGE,
-        //   CARDS_PAGE,
+          DIFFICULTY_PAGE,
+          CARDS_PAGE,
         //   RESULT_PAGE,
         ].includes(newPage)
       ) {
-        if (newPage === LEVEL_PAGE) {
-            page = LEVEL_PAGE;
+        if (newPage === DIFFICULTY_PAGE) {
+            page = DIFFICULTY_PAGE;
           return renderApp();
         }
     
-        // if (newPage === CARDS_PAGE) {
-        //   renderApp();
-        // }
+        if (newPage === CARDS_PAGE) {
+          renderApp();
+        }
     
         // if (newPage === RESULT_PAGE) {
         //   renderApp();
@@ -37,18 +48,17 @@ const goToPage = (newPage) => {
 
     export const renderApp = () => {
         const appEl = document.getElementById("app");
-        if (page === LEVEL_PAGE) {
-          return renderLevelPageComponent({
-            appEl,
+        if (page === DIFFICULTY_PAGE) {
+          return renderDifficultyPageComponent({
+            appEl, goToPage,
           });
         }
       
-        // if (page === CARDS_PAGE) {
-        //   return renderCardsPageComponent({
-        //     appEl,
-        //       goToPage,
-        //     });
-        // }
+        if (page === CARDS_PAGE) {
+          return renderCardsPageComponent({
+            appEl, game
+            });
+        }
       
         // if (page === RESULT_PAGE) {
         //   return renderResultPageComponent({
@@ -64,4 +74,4 @@ const goToPage = (newPage) => {
       
       };
       
-      goToPage(LEVEL_PAGE);
+      goToPage(DIFFICULTY_PAGE);
