@@ -43,6 +43,9 @@ module.exports = {
         filename: 'bundle.js',
         clean: true,
     },
+    node: {
+        __dirname: true,
+    },
     plugins: [
         new CopyPlugin({
             patterns: [{ from: 'static', to: 'static' }],
@@ -54,7 +57,4 @@ module.exports = {
             filename: 'mini.css',
         }),
     ],
-    node: {
-        __dirname: true,
-    },
 };
