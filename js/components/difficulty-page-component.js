@@ -71,8 +71,8 @@ export function renderDifficultyPageComponent({ appEl, goToPage }) {
     );
     let prevSelectedBtn = null;
 
-    difficultyBtnElements.forEach((difficultyBtnEl, index) => {
-        difficultyBtnEl.addEventListener('click', (e) => {
+    difficultyBtnElements.forEach((difficultyBtnEl) => {
+        difficultyBtnEl.addEventListener('click', () => {
             setError('');
             if (prevSelectedBtn !== null) {
                 prevSelectedBtn.classList.remove('selected');

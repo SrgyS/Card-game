@@ -3,9 +3,10 @@ import { DIFFICULTY_PAGE } from '../routes.js';
 export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     const cardsHTML = playCards
         .map((card, index) => {
+            console.log(card);
             return `<div class="card visible" data-index="${index}">
                             <div class="card__back">
-                                <img src="./scss/assets/img/card-back.png" alt="card back">
+                                <img src="./static/img/card-back.png" alt="card back">
                             </div>
                             <div class="card__front">
                                 <div class="card__top-left">
@@ -49,16 +50,22 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
 
     appEl.innerHTML = appHtml;
 
-    const cardElements = document.querySelectorAll('.card');
+    const cardElements = appEl.querySelectorAll('.card');
     let selectedCards = [];
     let matchedPairs = 0;
-
+    cardElements.forEach((cardEl) => {
+        cardEl.classList.remove('visible');
+    });
+    setTimeout(() => {
+        cardElements.forEach((cardEl) => {
+            cardEl.classList.add('visible');
+        });
+    }, 500);
     setTimeout(() => {
         cardElements.forEach((cardEl) => {
             cardEl.classList.remove('visible');
         });
     }, 5000);
-    console.log(playCards);
 
     cardElements.forEach((cardEl, index) => {
         cardEl.addEventListener('click', () => {
@@ -111,14 +118,12 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
 }
 
 function getSuitSymbol(suit) {
-    switch (suit) {
-        case 'Hearts':
-            return '<img src="./scss/assets/img/hearts.svg" alt="hearts">';
-        case 'Diamonds':
-            return '<img src="./scss/assets/img/diamonds.svg" alt="diamonds">';
-        case 'Clubs':
-            return '<img src="./scss/assets/img/clubs.svg" alt="clubs">';
-        case 'Spades':
-            return '<img src="./scss/assets/img/spades.svg" alt="spades">';
-    }
+    const suitSymbols = {
+        Hearts: '<img src="./static/img/hearts.svg" alt="hearts">',
+        Diamonds: '<img src="./static/img/diamonds.svg" alt="diamonds">',
+        Clubs: '<img src="./static/img/clubs.svg" alt="clubs">',
+        Spades: '<img src="./static/img/spades.svg" alt="spades">',
+    };
+
+    return suitSymbols[suit];
 }

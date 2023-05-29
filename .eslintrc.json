@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "commonjs": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": "eslint:recommended",
     "overrides": [],
@@ -10,6 +11,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "ignorePatterns": ["dist/bundle.js"],
     "rules": {
         "camelcase": ["error"],
         "eqeqeq": ["error", "always"]

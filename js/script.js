@@ -1,3 +1,4 @@
+import '../scss/style.css';
 import { renderDifficultyPageComponent } from './components/difficulty-page-component.js';
 import { renderGamePageComponent } from './components/game-page-component.js';
 import {

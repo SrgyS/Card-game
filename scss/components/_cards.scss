@@ -1,78 +1,12 @@
-// @-webkit-keyframes matched {
-//     from {
-//         -webkit-transform: scale(1);
-//         transform: scale(1);
-//         -webkit-transform-origin: center center;
-//         transform-origin: center center;
-//         -webkit-animation-timing-function: ease-out;
-//         animation-timing-function: ease-out;
-//     }
-//     10% {
-//         -webkit-transform: scale(0.91);
-//         transform: scale(0.91);
-//         -webkit-animation-timing-function: ease-in;
-//         animation-timing-function: ease-in;
-//     }
-//     17% {
-//         -webkit-transform: scale(0.98);
-//         transform: scale(0.98);
-//         -webkit-animation-timing-function: ease-out;
-//         animation-timing-function: ease-out;
-//     }
-//     33% {
-//         -webkit-transform: scale(0.87);
-//         transform: scale(0.87);
-//         -webkit-animation-timing-function: ease-in;
-//         animation-timing-function: ease-in;
-//     }
-//     45% {
-//         -webkit-transform: scale(1);
-//         transform: scale(1);
-//         -webkit-animation-timing-function: ease-out;
-//         animation-timing-function: ease-out;
-//     }
-// }
-// @keyframes matched {
-//     from {
-//         -webkit-transform: scale(1);
-//         transform: scale(1);
-//         -webkit-transform-origin: center center;
-//         transform-origin: center center;
-//         -webkit-animation-timing-function: ease-out;
-//         animation-timing-function: ease-out;
-//     }
-//     10% {
-//         -webkit-transform: scale(0.91);
-//         transform: scale(0.91);
-//         -webkit-animation-timing-function: ease-in;
-//         animation-timing-function: ease-in;
-//     }
-//     17% {
-//         -webkit-transform: scale(0.98);
-//         transform: scale(0.98);
-//         -webkit-animation-timing-function: ease-out;
-//         animation-timing-function: ease-out;
-//     }
-//     33% {
-//         -webkit-transform: scale(0.87);
-//         transform: scale(0.87);
-//         -webkit-animation-timing-function: ease-in;
-//         animation-timing-function: ease-in;
-//     }
-//     45% {
-//         -webkit-transform: scale(1);
-//         transform: scale(1);
-//         -webkit-animation-timing-function: ease-out;
-//         animation-timing-function: ease-out;
-//     }
-// }
-@keyframes zoomAnimation {
+@keyframes zoom-animation {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.2);
     }
+
     100% {
         transform: scale(1);
     }
@@ -84,12 +18,13 @@
     gap: 15px;
     perspective: 1000px;
 }
+
 .card {
     position: relative;
     transition: transform 0.5s ease;
     box-sizing: border-box;
+
     &__back {
-        width: 95px;
         height: 133px;
         border-radius: 4px;
         width: 95px;
@@ -117,6 +52,7 @@
         transition: transform 500ms ease-in-out;
         box-sizing: border-box;
     }
+
     &__top-left,
     &__down-right {
         display: flex;
@@ -148,6 +84,7 @@
         height: 6px;
     }
 }
+
 .card.visible .card__back {
     transform: rotateY(180deg);
 }
@@ -157,7 +94,5 @@
 }
 
 .card.matched {
-    // -webkit-animation: matched 1.5s ease-in-out both;
-    // animation: matched 1.5s ease-in-out both;
-    animation: zoomAnimation 0.3s ease-in-out;
+    animation: zoom-animation 0.3s ease-in-out;
 }
