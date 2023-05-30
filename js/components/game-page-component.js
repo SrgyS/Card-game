@@ -1,4 +1,5 @@
-import { DIFFICULTY_PAGE } from '../routes.js';
+import { DIFFICULTY_PAGE, RESULT_PAGE } from '../routes.js';
+import { game } from '../script.js';
 
 export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     const cardsHTML = playCards
@@ -94,14 +95,18 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
 
                         if (matchedPairs === playCards.length / 2) {
                             setTimeout(() => {
-                                alert('Вы победили!');
-                                goToPage(DIFFICULTY_PAGE);
+                                // alert('Вы победили!');
+                                game.gameStatus = RESULT_PAGE;
+                                game.isWin = true;
+                                goToPage(RESULT_PAGE);
                             }, 800);
                         }
                     } else {
                         setTimeout(() => {
-                            alert('Вы проиграли!');
-                            goToPage(DIFFICULTY_PAGE);
+                            // alert('Вы проиграли!');
+                            game.gameStatus = RESULT_PAGE;
+                            game.isWin = false;
+                            goToPage(RESULT_PAGE);
                         }, 800);
                     }
 

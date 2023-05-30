@@ -1,11 +1,8 @@
 import '../scss/style.css';
 import { renderDifficultyPageComponent } from './components/difficulty-page-component.js';
 import { renderGamePageComponent } from './components/game-page-component.js';
-import {
-    DIFFICULTY_PAGE,
-    GAME_PAGE,
-    // RESULT_PAGE
-} from './routes.js';
+import { renderResultPageComponent } from './components/result-page-component.js';
+import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes.js';
 
 let page = null;
 
@@ -15,16 +12,11 @@ export const game = {
     gameStatus: page,
     cards: [],
     selectedCards: [],
+    isWin: null,
 };
 
 const goToPage = (newPage) => {
-    if (
-        [
-            DIFFICULTY_PAGE,
-            GAME_PAGE,
-            //   RESULT_PAGE,
-        ].includes(newPage)
-    ) {
+    if ([DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE].includes(newPage)) {
         if (newPage === DIFFICULTY_PAGE) {
             page = DIFFICULTY_PAGE;
             return renderApp();
@@ -34,9 +26,9 @@ const goToPage = (newPage) => {
             renderApp();
         }
 
-        // if (newPage === RESULT_PAGE) {
-        //   renderApp();
-        // }
+        if (newPage === RESULT_PAGE) {
+            renderApp();
+        }
 
         page = newPage;
         renderApp();
@@ -63,17 +55,17 @@ export const renderApp = () => {
         });
     }
 
-    // if (page === RESULT_PAGE) {
-    //   return renderResultPageComponent({
-    //     appEl,
-    //     // onAddPostClick({ description, imageUrl }) {
-    //     //   // TODO: реализовать добавление поста в API
-    //     //   // addPost({token: getToken(), description, imageUrl})
-    //     //   console.log("Добавляю пост...", { description, imageUrl });
-    //     //   goToPage(POSTS_PAGE);
-    //     }
-    //   );
-    // }
+    if (page === RESULT_PAGE) {
+        return renderResultPageComponent({
+            appEl,
+            goToPage,
+            //     // onAddPostClick({ description, imageUrl }) {
+            //     //   // TODO: реализовать добавление поста в API
+            //     //   // addPost({token: getToken(), description, imageUrl})
+            //     //   console.log("Добавляю пост...", { description, imageUrl });
+            //     //   goToPage(POSTS_PAGE);
+        });
+    }
 };
 
 goToPage(DIFFICULTY_PAGE);

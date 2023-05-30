@@ -163,7 +163,7 @@ body {
     animation: zoom-animation 0.3s ease-in-out;
 }
 
-.difficulty-box {
+.box {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -173,7 +173,13 @@ body {
     border-radius: 12px;
 }
 
-.difficulty-box__title {
+.box img {
+    margin-top: 30px;
+    widows: 96px;
+    height: 96px;
+}
+
+.box__title {
     color: rgb(0 73 128);
     display: block;
     text-align: center;
@@ -184,13 +190,13 @@ body {
     margin-bottom: 0;
 }
 
-.difficulty-box__container {
+.box__container {
     display: flex;
     gap: 24px;
     margin-top: 48px;
 }
 
-.difficulty-box__item {
+.box__item {
     box-sizing: border-box;
     cursor: pointer;
     color: rgb(0 128 193);
@@ -207,24 +213,24 @@ body {
 }
 
 @media (hover: hover), (pointer: fine) {
-    .difficulty-box__item:hover {
+    .box__item:hover {
         border: 2px solid rgb(0 128 193);
     }
 }
 
-.difficulty-box__item:active {
+.box__item:active {
     transform: scale(1.02);
 }
 
-.difficulty-box .btn {
+.box .difficulty-btn {
     margin-top: 67px;
 }
 
-.difficulty-box .selected {
+.box .selected {
     border: 2px solid rgb(0 128 193);
 }
 
-.difficulty-box input[type='radio'] {
+.box input[type='radio'] {
     display: none; /* скрыть стандартный инпут */
 }
 
@@ -240,30 +246,55 @@ body {
     margin-bottom: 35px;
 }
 
-.game .timer {
+.timer {
     display: flex;
 }
 
-.game .timer__block {
+.timer__block {
     display: flex;
     flex-direction: column;
 }
 
-.game .timer__dot {
+.timer__dot {
     display: flex;
     align-items: flex-end;
 }
 
-.game .timer__label {
+.timer__label {
     font-size: 16px;
     line-height: 16px;
     text-align: end;
     margin-right: 5px;
 }
 
-.game .timer #seconds,
-.game .timer #minutes,
-.game .timer__dot {
+.timer #seconds,
+.timer #minutes,
+.timer__dot {
     font-size: 64px;
     line-height: 72px;
+}
+
+.result-box__title {
+    max-width: 276px;
+    margin-top: 5px;
+}
+
+.timer__title,
+.result-timer {
+    color: rgb(0 0 0);
+}
+
+.timer__title {
+    margin-top: 28px;
+    margin-bottom: 0;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.result-timer {
+    padding-top: 10px;
+}
+
+.result-btn {
+    margin-top: 40px;
 } /*# sourceMappingURL=style.css.map */

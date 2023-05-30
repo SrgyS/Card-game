@@ -1,0 +1,26 @@
+.result-box {
+    &__title {
+        max-width: 276px;
+        margin-top: 5px;
+    }
+}
+
+.timer__title,
+.result-timer {
+    color: rgba(0 0 0 / 10000%);
+}
+
+.timer__title {
+    margin-top: 28px;
+    margin-bottom: 0;
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.result-timer {
+    padding-top: 10px;
+}
+
+.result-btn {
+    margin-top: 40px;
+}

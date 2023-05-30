@@ -5,23 +5,23 @@ import { generateDeck } from '../helpers.js';
 export function renderDifficultyPageComponent({ appEl, goToPage }) {
     const appHtml = `<div class="main">
     <form class="difficulty-form">
-                    <div class="difficulty-box">
-                        <p class="difficulty-box__title">Выбери сложность</p>
-                        <div class="difficulty-box__container">
-                            <label class="difficulty-box__item">
+                    <div class="box">
+                        <p class="box__title">Выбери сложность</p>
+                        <div class="box__container">
+                            <label class="box__item">
                                 <input type="radio" name="difficulty" value="1" />
-                                <span class="difficulty-box__item-text">1</span>
+                                <span class="box__item-text">1</span>
                             </label>
-                            <label class="difficulty-box__item">
+                            <label class="box__item">
                                 <input type="radio" name="difficulty" value="2" />
-                                <span class="difficulty-box__item-text">2</span>
+                                <span class="box__item-text">2</span>
                             </label>
-                            <label class="difficulty-box__item">
+                            <label class="box__item">
                                 <input type="radio" name="difficulty" value="3" />
-                                <span class="difficulty-box__item-text">3</span>
+                                <span class="box__item-text">3</span>
                             </label>
                         </div>
-                        <button type="submit" class="btn" id="start-btn">Старт</button>
+                        <button type="submit" class="btn difficulty-btn" id="start-btn">Старт</button>
                         <div class="form-error"></div>
                     </div>
                 </form>
@@ -66,9 +66,7 @@ export function renderDifficultyPageComponent({ appEl, goToPage }) {
     const difficultyFormEl = appEl.querySelector('.difficulty-form');
     const formErrorEl = appEl.querySelector('.form-error');
 
-    const difficultyBtnElements = document.querySelectorAll(
-        '.difficulty-box__item'
-    );
+    const difficultyBtnElements = document.querySelectorAll('.box__item');
     let prevSelectedBtn = null;
 
     difficultyBtnElements.forEach((difficultyBtnEl) => {
