@@ -5,6 +5,7 @@ import { renderResultPageComponent } from './components/result-page-component.js
 import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes.js';
 
 let page = null;
+const appEl = document.getElementById('app');
 
 export const game = {
     gameTime: 0,
@@ -15,7 +16,7 @@ export const game = {
     isWin: null,
 };
 
-const goToPage = (newPage) => {
+export const goToPage = (newPage) => {
     if ([DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE].includes(newPage)) {
         if (newPage === DIFFICULTY_PAGE) {
             page = DIFFICULTY_PAGE;
@@ -23,22 +24,26 @@ const goToPage = (newPage) => {
         }
 
         if (newPage === GAME_PAGE) {
-            renderApp();
+            const playCards = game.cards;
+            return renderGamePageComponent({
+                appEl,
+                goToPage,
+                playCards,
+            });
         }
 
         if (newPage === RESULT_PAGE) {
-            renderApp();
+            return renderResultPageComponent({
+                appEl,
+                goToPage,
+            });
         }
-
-        page = newPage;
-        renderApp();
-        return;
     }
-    throw new Error('страницы не существует');
+
+    throw new Error('Страница не существует');
 };
 
 export const renderApp = () => {
-    const appEl = document.getElementById('app');
     if (page === DIFFICULTY_PAGE) {
         return renderDifficultyPageComponent({
             appEl,
@@ -59,11 +64,6 @@ export const renderApp = () => {
         return renderResultPageComponent({
             appEl,
             goToPage,
-            //     // onAddPostClick({ description, imageUrl }) {
-            //     //   // TODO: реализовать добавление поста в API
-            //     //   // addPost({token: getToken(), description, imageUrl})
-            //     //   console.log("Добавляю пост...", { description, imageUrl });
-            //     //   goToPage(POSTS_PAGE);
         });
     }
 };

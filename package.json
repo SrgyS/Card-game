@@ -9,6 +9,7 @@
         "lint:js": "eslint './**/*.js' --ignore-pattern 'node_modules/'",
         "lint:scss": "stylelint './**/*.scss' ",
         "lint:css": "stylelint './**/*.css' ",
+        "lint:fix": "npx stylelint --fix ./scss/**/*.css && npx stylelint --fix ./scss/**/*.scss",
         "prepare": "husky install",
         "lint": "npm run lint:js && npm run lint:scss && npm run lint:css",
         "build": "NODE_ENV=production webpack",

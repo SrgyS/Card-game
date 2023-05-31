@@ -1,10 +1,10 @@
+import { startTimer, stopTimer, gameTime } from '../helpers.js';
 import { DIFFICULTY_PAGE, RESULT_PAGE } from '../routes.js';
 import { game } from '../script.js';
 
 export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     const cardsHTML = playCards
         .map((card, index) => {
-            console.log(card);
             return `<div class="card visible" data-index="${index}">
                             <div class="card__back">
                                 <img src="./static/img/card-back.png" alt="card back">
@@ -57,15 +57,18 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     cardElements.forEach((cardEl) => {
         cardEl.classList.remove('visible');
     });
+    let completedTimeout = false;
     setTimeout(() => {
         cardElements.forEach((cardEl) => {
             cardEl.classList.add('visible');
         });
     }, 500);
-    setTimeout(() => {
+    let showCardTime = setTimeout(() => {
         cardElements.forEach((cardEl) => {
             cardEl.classList.remove('visible');
         });
+        completedTimeout = true;
+        startTimer();
     }, 5000);
 
     cardElements.forEach((cardEl, index) => {
@@ -95,7 +98,8 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
 
                         if (matchedPairs === playCards.length / 2) {
                             setTimeout(() => {
-                                // alert('Вы победили!');
+                                stopTimer();
+                                game.gameTime = gameTime;
                                 game.gameStatus = RESULT_PAGE;
                                 game.isWin = true;
                                 goToPage(RESULT_PAGE);
@@ -103,7 +107,9 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
                         }
                     } else {
                         setTimeout(() => {
-                            // alert('Вы проиграли!');
+                            stopTimer();
+                            console.log(gameTime);
+                            game.gameTime = gameTime;
                             game.gameStatus = RESULT_PAGE;
                             game.isWin = false;
                             goToPage(RESULT_PAGE);
@@ -117,7 +123,10 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     });
 
     document.querySelector('.game__btn').addEventListener('click', () => {
-        console.log('start');
+        if (!completedTimeout) {
+            clearTimeout(showCardTime);
+        }
+        stopTimer();
         goToPage(DIFFICULTY_PAGE);
     });
 }

@@ -274,6 +274,30 @@ body {
     line-height: 72px;
 }
 
+@keyframes scale-in-center {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
 .result-box__title {
     max-width: 276px;
     margin-top: 5px;
@@ -297,4 +321,8 @@ body {
 
 .result-btn {
     margin-top: 40px;
+}
+
+.scale-in-center {
+    animation: scale-in-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 } /*# sourceMappingURL=style.css.map */
