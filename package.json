@@ -1,14 +1,46 @@
 {
-  "name": "card-game",
-  "description": "",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "normalize.css": "^8.0.1"
-  }
+    "name": "card-game",
+    "description": "",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write ./",
+        "lint:js": "eslint './**/*.js' --ignore-pattern 'node_modules/'",
+        "lint:scss": "stylelint './**/*.scss' ",
+        "lint:css": "stylelint './**/*.css' ",
+        "prepare": "husky install",
+        "lint": "npm run lint:js && npm run lint:scss && npm run lint:css",
+        "build": "NODE_ENV=production webpack",
+        "start": "webpack-dev-server --open"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "normalize.css": "^8.0.1"
+    },
+    "devDependencies": {
+        "copy-webpack-plugin": "^11.0.0",
+        "css-loader": "^6.8.1",
+        "css-minimizer-webpack-plugin": "^5.0.0",
+        "eslint": "^8.41.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "html-webpack-plugin": "^5.5.1",
+        "husky": "^8.0.3",
+        "mini-css-extract-plugin": "^2.7.6",
+        "prettier": "^2.8.8",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.62.1",
+        "sass-loader": "^13.3.1",
+        "style-loader": "^3.3.3",
+        "stylelint": "^15.6.2",
+        "stylelint-config-recommended-scss": "^12.0.0",
+        "stylelint-config-standard": "^33.0.0",
+        "stylelint-config-standard-scss": "^9.0.0",
+        "stylelint-prettier": "^3.0.0",
+        "webpack": "^5.84.1",
+        "webpack-cli": "^5.1.1",
+        "webpack-dev-server": "^4.15.0"
+    }
 }

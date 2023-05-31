@@ -1,106 +1,269 @@
+@charset "UTF-8";
+
 @font-face {
-  font-family: "StratosSkyeng";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("./assets/fonts/stratosskyengweb-regular.woff2") format("woff2");
+    font-family: StratosSkyeng;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./assets/fonts/stratosskyengweb-regular.woff2') format('woff2');
 }
+
 body {
-  background-color: rgb(0, 73, 128);
-  height: 100vh;
-  color: red;
-  font-family: "StratosSkyeng", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  color: rgb(0, 128, 193);
+    background-color: rgb(0 73 128);
+    height: 100vh;
+    font-family: StratosSkyeng, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(0 128 193);
 }
 
 .main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 .btn {
-  width: 246px;
-  height: 50px;
-  cursor: pointer;
-  background-color: rgb(122, 193, 0);
-  color: rgb(255, 255, 255);
-  border: none;
-  border-radius: 12px;
-  font-size: 24px;
-  line-height: 32px;
-  transition: transform 0.5s ease;
+    width: 246px;
+    height: 50px;
+    cursor: pointer;
+    background-color: rgb(122 193 0);
+    color: rgb(255 255 255);
+    border: none;
+    border-radius: 12px;
+    font-size: 24px;
+    line-height: 32px;
+    transition: transform 0.5s ease;
 }
+
 @media (hover: hover), (pointer: fine) {
-  .btn:hover {
-    background-color: rgb(139, 205, 26);
-    transform: scale(1.02);
-  }
+    .btn:hover {
+        background-color: rgb(139 205 26);
+        transform: scale(1.02);
+    }
 }
 
 .form-error {
-  color: red;
-  text-transform: uppercase;
-  padding: 10px;
+    color: red;
+    text-transform: uppercase;
+    padding: 10px;
 }
 
-.difficulty-box {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 480px;
-  height: 459px;
-  background-color: rgb(194, 245, 255);
-  border-radius: 12px;
+@keyframes zoom-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
-.difficulty-box__title {
-  color: rgb(0, 73, 128);
-  display: block;
-  text-align: center;
-  max-width: 208px;
-  font-size: 40px;
-  line-height: 48px;
-  margin-top: 52px;
-  margin-bottom: 0;
-}
-.difficulty-box__container {
-  display: flex;
-  gap: 24px;
-  margin-top: 48px;
-}
-.difficulty-box__item {
-  box-sizing: border-box;
-  cursor: pointer;
-  color: rgb(0, 128, 193);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 96px;
-  height: 98px;
-  background-color: rgb(255, 255, 255);
-  font-size: 64px;
-  line-height: 72px;
-  border-radius: 12px;
-  transition: all 0.2s ease;
-}
-@media (hover: hover), (pointer: fine) {
-  .difficulty-box__item:hover {
-    border: 2px solid rgb(0, 128, 193);
-  }
-}
-.difficulty-box__item:active {
-  transform: scale(1.02);
-}
-.difficulty-box .btn {
-  margin-top: 67px;
-}
-.difficulty-box .selected {
-  border: 2px solid rgb(0, 128, 193);
+
+@keyframes zoom-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .cards {
-  color: rgb(255, 255, 255);
-}/*# sourceMappingURL=style.css.map */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    perspective: 1000px;
+}
+
+.card {
+    position: relative;
+    transition: transform 0.5s ease;
+    box-sizing: border-box;
+}
+
+.card__back {
+    height: 133px;
+    border-radius: 4px;
+    width: 95px;
+    backface-visibility: hidden;
+    transform: rotateY(0);
+    transition: transform 500ms ease-in-out;
+}
+
+.card__front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 133px;
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+    font-size: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: transform 500ms ease-in-out;
+    box-sizing: border-box;
+}
+
+.card__top-left,
+.card__down-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+}
+
+.card__top-left {
+    top: 5px;
+    left: 6px;
+}
+
+.card__down-right {
+    transform: rotate(180deg);
+    align-self: end;
+    bottom: 5px;
+    right: 6px;
+}
+
+.card__center-suit {
+    position: absolute;
+}
+
+.card .small-suit {
+    display: inline-block;
+    display: flex;
+    width: 6px;
+    height: 6px;
+}
+
+.card.visible .card__back {
+    transform: rotateY(180deg);
+}
+
+.card.visible .card__front {
+    transform: rotateY(0deg);
+}
+
+.card.matched {
+    animation: zoom-animation 0.3s ease-in-out;
+}
+
+.difficulty-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    height: 459px;
+    background-color: rgb(194 245 255);
+    border-radius: 12px;
+}
+
+.difficulty-box__title {
+    color: rgb(0 73 128);
+    display: block;
+    text-align: center;
+    max-width: 208px;
+    font-size: 40px;
+    line-height: 48px;
+    margin-top: 52px;
+    margin-bottom: 0;
+}
+
+.difficulty-box__container {
+    display: flex;
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.difficulty-box__item {
+    box-sizing: border-box;
+    cursor: pointer;
+    color: rgb(0 128 193);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 98px;
+    background-color: rgb(255 255 255);
+    font-size: 64px;
+    line-height: 72px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+@media (hover: hover), (pointer: fine) {
+    .difficulty-box__item:hover {
+        border: 2px solid rgb(0 128 193);
+    }
+}
+
+.difficulty-box__item:active {
+    transform: scale(1.02);
+}
+
+.difficulty-box .btn {
+    margin-top: 67px;
+}
+
+.difficulty-box .selected {
+    border: 2px solid rgb(0 128 193);
+}
+
+.difficulty-box input[type='radio'] {
+    display: none; /* скрыть стандартный инпут */
+}
+
+.game {
+    padding: 20px 25px 50px;
+    color: rgb(255 255 255);
+}
+
+.game__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.game .timer {
+    display: flex;
+}
+
+.game .timer__block {
+    display: flex;
+    flex-direction: column;
+}
+
+.game .timer__dot {
+    display: flex;
+    align-items: flex-end;
+}
+
+.game .timer__label {
+    font-size: 16px;
+    line-height: 16px;
+    text-align: end;
+    margin-right: 5px;
+}
+
+.game .timer #seconds,
+.game .timer #minutes,
+.game .timer__dot {
+    font-size: 64px;
+    line-height: 72px;
+} /*# sourceMappingURL=style.css.map */

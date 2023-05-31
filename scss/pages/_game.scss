@@ -1,0 +1,39 @@
+.game {
+    padding: 20px 25px 50px;
+    color: rgb(255 255 255 / 100%);
+
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px;
+    }
+
+    .timer {
+        display: flex;
+
+        &__block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__dot {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        &__label {
+            font-size: 16px;
+            line-height: 16px;
+            text-align: end;
+            margin-right: 5px;
+        }
+
+        #seconds,
+        #minutes,
+        &__dot {
+            font-size: 64px;
+            line-height: 72px;
+        }
+    }
+}

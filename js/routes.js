@@ -1,3 +1,3 @@
-export const DIFFICULTY_PAGE = "difficulty";
-export const CARDS_PAGE = "cards";
-export const RESULT_PAGE = "result";
+export const DIFFICULTY_PAGE = 'difficulty';
+export const GAME_PAGE = 'game';
+export const RESULT_PAGE = 'result';

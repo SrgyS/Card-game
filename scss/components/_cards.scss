@@ -1,0 +1,98 @@
+@keyframes zoom-animation {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    perspective: 1000px;
+}
+
+.card {
+    position: relative;
+    transition: transform 0.5s ease;
+    box-sizing: border-box;
+
+    &__back {
+        height: 133px;
+        border-radius: 4px;
+        width: 95px;
+        backface-visibility: hidden;
+        transform: rotateY(0);
+        transition: transform 500ms ease-in-out;
+    }
+
+    &__front {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 95px;
+        height: 133px;
+        background-color: $white-color;
+        color: rgba(0 0 0 / 10000%);
+        font-size: 24px;
+        line-height: 24px;
+        border-radius: 4px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotateY(180deg);
+        backface-visibility: hidden;
+        transition: transform 500ms ease-in-out;
+        box-sizing: border-box;
+    }
+
+    &__top-left,
+    &__down-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+    }
+
+    &__top-left {
+        top: 5px;
+        left: 6px;
+    }
+
+    &__down-right {
+        transform: rotate(180deg);
+        align-self: end;
+        bottom: 5px;
+        right: 6px;
+    }
+
+    &__center-suit {
+        position: absolute;
+    }
+
+    .small-suit {
+        display: inline-block;
+        display: flex;
+        width: 6px;
+        height: 6px;
+    }
+}
+
+.card.visible .card__back {
+    transform: rotateY(180deg);
+}
+
+.card.visible .card__front {
+    transform: rotateY(0deg);
+}
+
+.card.matched {
+    animation: zoom-animation 0.3s ease-in-out;
+}
