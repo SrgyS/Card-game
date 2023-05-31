@@ -1,8 +1,20 @@
-import { startTimer, stopTimer, gameTime } from '../helpers.js';
-import { DIFFICULTY_PAGE, RESULT_PAGE } from '../routes.js';
-import { game } from '../script.js';
+import { startTimer, stopTimer, gameTime, Card } from '../helpers';
+import { DIFFICULTY_PAGE, RESULT_PAGE } from '../routes';
+import { game } from '../script';
+interface SelectedCard {
+    element: Element;
+    index: number;
+}
 
-export function renderGamePageComponent({ appEl, goToPage, playCards }) {
+export function renderGamePageComponent({
+    appEl,
+    goToPage,
+    playCards,
+}: {
+    appEl: HTMLElement;
+    goToPage: (page: string) => void;
+    playCards: Card[];
+}) {
     const cardsHTML = playCards
         .map((card, index) => {
             return `<div class="card visible" data-index="${index}">
@@ -52,7 +64,7 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     appEl.innerHTML = appHtml;
 
     const cardElements = appEl.querySelectorAll('.card');
-    let selectedCards = [];
+    let selectedCards: SelectedCard[] = [];
     let matchedPairs = 0;
     cardElements.forEach((cardEl) => {
         cardEl.classList.remove('visible');
@@ -122,22 +134,27 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
         });
     });
 
-    document.querySelector('.game__btn').addEventListener('click', () => {
-        if (!completedTimeout) {
-            clearTimeout(showCardTime);
-        }
-        stopTimer();
-        goToPage(DIFFICULTY_PAGE);
-    });
+    const gameBtn = document.querySelector('.game__btn');
+    if (gameBtn !== null) {
+        gameBtn.addEventListener('click', () => {
+            if (!completedTimeout) {
+                clearTimeout(showCardTime);
+            }
+            stopTimer();
+            goToPage(DIFFICULTY_PAGE);
+        });
+    }
 }
 
-function getSuitSymbol(suit) {
-    const suitSymbols = {
-        Hearts: '<img src="./static/img/hearts.svg" alt="hearts">',
-        Diamonds: '<img src="./static/img/diamonds.svg" alt="diamonds">',
-        Clubs: '<img src="./static/img/clubs.svg" alt="clubs">',
-        Spades: '<img src="./static/img/spades.svg" alt="spades">',
-    };
+const suitSymbols: {
+    [key: string]: string;
+} = {
+    Hearts: '<img src="./static/img/hearts.svg" alt="hearts">',
+    Diamonds: '<img src="./static/img/diamonds.svg" alt="diamonds">',
+    Clubs: '<img src="./static/img/clubs.svg" alt="clubs">',
+    Spades: '<img src="./static/img/spades.svg" alt="spades">',
+};
 
+function getSuitSymbol(suit: string) {
     return suitSymbols[suit];
 }

@@ -1,13 +1,22 @@
 import '../scss/style.css';
-import { renderDifficultyPageComponent } from './components/difficulty-page-component.js';
-import { renderGamePageComponent } from './components/game-page-component.js';
-import { renderResultPageComponent } from './components/result-page-component.js';
-import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes.js';
+import { renderDifficultyPageComponent } from './components/difficulty-page-component';
+import { renderGamePageComponent } from './components/game-page-component';
+import { renderResultPageComponent } from './components/result-page-component';
+import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes';
+import { Card } from '../js/helpers';
+let page: string = '';
+const appEl: HTMLElement | null = document.getElementById('app');
 
-let page = null;
-const appEl = document.getElementById('app');
+interface Game {
+    gameTime: number;
+    difficulty: number | null;
+    gameStatus: string;
+    cards: Card[];
+    selectedCards: { element: HTMLElement; index: number }[];
+    isWin: boolean | null;
+}
 
-export const game = {
+export const game: Game = {
     gameTime: 0,
     difficulty: null,
     gameStatus: page,
@@ -16,7 +25,7 @@ export const game = {
     isWin: null,
 };
 
-export const goToPage = (newPage) => {
+export const goToPage = (newPage: string) => {
     if ([DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE].includes(newPage)) {
         if (newPage === DIFFICULTY_PAGE) {
             page = DIFFICULTY_PAGE;
@@ -26,7 +35,7 @@ export const goToPage = (newPage) => {
         if (newPage === GAME_PAGE) {
             const playCards = game.cards;
             return renderGamePageComponent({
-                appEl,
+                appEl: appEl!,
                 goToPage,
                 playCards,
             });
@@ -34,7 +43,7 @@ export const goToPage = (newPage) => {
 
         if (newPage === RESULT_PAGE) {
             return renderResultPageComponent({
-                appEl,
+                appEl: appEl!,
                 goToPage,
             });
         }
@@ -46,7 +55,7 @@ export const goToPage = (newPage) => {
 export const renderApp = () => {
     if (page === DIFFICULTY_PAGE) {
         return renderDifficultyPageComponent({
-            appEl,
+            appEl: appEl!,
             goToPage,
         });
     }
@@ -54,7 +63,7 @@ export const renderApp = () => {
     if (page === GAME_PAGE) {
         const playCards = game.cards;
         return renderGamePageComponent({
-            appEl,
+            appEl: appEl!,
             goToPage,
             playCards,
         });
@@ -62,7 +71,7 @@ export const renderApp = () => {
 
     if (page === RESULT_PAGE) {
         return renderResultPageComponent({
-            appEl,
+            appEl: appEl!,
             goToPage,
         });
     }

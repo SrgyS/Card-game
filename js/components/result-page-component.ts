@@ -1,7 +1,13 @@
-import { DIFFICULTY_PAGE } from '../routes.js';
-import { game } from '../script.js';
+import { DIFFICULTY_PAGE } from '../routes';
+import { game } from '../script';
 
-export function renderResultPageComponent({ appEl, goToPage }) {
+export function renderResultPageComponent({
+    appEl,
+    goToPage,
+}: {
+    appEl: HTMLElement;
+    goToPage: (page: string) => void;
+}) {
     let minutes = Math.floor(game.gameTime / 60);
     let seconds = game.gameTime % 60;
     const appHtml = `<div class="main">
@@ -40,7 +46,10 @@ export function renderResultPageComponent({ appEl, goToPage }) {
 
     appEl.innerHTML = appHtml;
 
-    document.getElementById('start-btn').addEventListener('click', () => {
-        goToPage(DIFFICULTY_PAGE);
-    });
+    const startBtn = appEl.querySelector('#start-btn');
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            goToPage(DIFFICULTY_PAGE);
+        });
+    }
 }
