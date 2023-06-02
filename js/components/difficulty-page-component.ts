@@ -44,7 +44,6 @@ export function renderDifficultyPageComponent({
     const difficultyFormEl = appEl.querySelector(
         '.difficulty-form'
     ) as HTMLFormElement;
-    const formErrorEl = appEl.querySelector('.form-error');
 
     const difficultyBtnElements = document.querySelectorAll('.box__item');
     let prevSelectedBtn: Element | null = null;

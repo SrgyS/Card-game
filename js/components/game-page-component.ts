@@ -75,7 +75,7 @@ export function renderGamePageComponent({
             cardEl.classList.add('visible');
         });
     }, 500);
-    let showCardTime = setTimeout(() => {
+    const showCardTime = setTimeout(() => {
         cardElements.forEach((cardEl) => {
             cardEl.classList.remove('visible');
         });

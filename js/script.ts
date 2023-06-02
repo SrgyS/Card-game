@@ -4,7 +4,7 @@ import { renderGamePageComponent } from './components/game-page-component';
 import { renderResultPageComponent } from './components/result-page-component';
 import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes';
 import { Card } from '../js/helpers';
-let page: string = '';
+let page = '';
 const appEl: HTMLElement | null = document.getElementById('app');
 
 interface Game {
@@ -35,7 +35,7 @@ export const goToPage = (newPage: string) => {
         if (newPage === GAME_PAGE) {
             const playCards = game.cards;
             return renderGamePageComponent({
-                appEl: appEl!,
+                appEl: appEl ? appEl : document.createElement('div'),
                 goToPage,
                 playCards,
             });
@@ -43,7 +43,7 @@ export const goToPage = (newPage: string) => {
 
         if (newPage === RESULT_PAGE) {
             return renderResultPageComponent({
-                appEl: appEl!,
+                appEl: appEl ? appEl : document.createElement('div'),
                 goToPage,
             });
         }
@@ -55,7 +55,7 @@ export const goToPage = (newPage: string) => {
 export const renderApp = () => {
     if (page === DIFFICULTY_PAGE) {
         return renderDifficultyPageComponent({
-            appEl: appEl!,
+            appEl: appEl ? appEl : document.createElement('div'),
             goToPage,
         });
     }
@@ -63,7 +63,7 @@ export const renderApp = () => {
     if (page === GAME_PAGE) {
         const playCards = game.cards;
         return renderGamePageComponent({
-            appEl: appEl!,
+            appEl: appEl ? appEl : document.createElement('div'),
             goToPage,
             playCards,
         });
@@ -71,7 +71,7 @@ export const renderApp = () => {
 
     if (page === RESULT_PAGE) {
         return renderResultPageComponent({
-            appEl: appEl!,
+            appEl: appEl ? appEl : document.createElement('div'),
             goToPage,
         });
     }

@@ -8,8 +8,8 @@ export function renderResultPageComponent({
     appEl: HTMLElement;
     goToPage: (page: string) => void;
 }) {
-    let minutes = Math.floor(game.gameTime / 60);
-    let seconds = game.gameTime % 60;
+    const minutes = Math.floor(game.gameTime / 60);
+    const seconds = game.gameTime % 60;
     const appHtml = `<div class="main">
     <div class = "box result-box scale-in-center">
     <img
