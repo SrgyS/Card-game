@@ -91,35 +91,6 @@ body {
     box-sizing: border-box;
 }
 
-.card__back {
-    height: 133px;
-    border-radius: 4px;
-    width: 95px;
-    backface-visibility: hidden;
-    transform: rotateY(0);
-    transition: transform 500ms ease-in-out;
-}
-
-.card__front {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 95px;
-    height: 133px;
-    background-color: rgb(255 255 255);
-    color: rgb(0 0 0);
-    font-size: 24px;
-    line-height: 24px;
-    border-radius: 4px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    transition: transform 500ms ease-in-out;
-    box-sizing: border-box;
-}
-
 .card__top-left,
 .card__down-right {
     display: flex;
@@ -149,6 +120,35 @@ body {
     display: flex;
     width: 6px;
     height: 6px;
+}
+
+.card__back {
+    height: 133px;
+    border-radius: 4px;
+    width: 95px;
+    backface-visibility: hidden;
+    transform: rotateY(0);
+    transition: transform 500ms ease-in-out;
+}
+
+.card__front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 133px;
+    background-color: rgb(255 255 255);
+    color: rgb(0 0 0);
+    font-size: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: transform 500ms ease-in-out;
+    box-sizing: border-box;
 }
 
 .card.visible .card__back {
@@ -337,4 +337,4 @@ body {
 
 .scale-in-center {
     animation: scale-in-center 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-} /*# sourceMappingURL=style.css.map */
+}

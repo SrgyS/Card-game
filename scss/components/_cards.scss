@@ -24,35 +24,6 @@
     transition: transform 0.5s ease;
     box-sizing: border-box;
 
-    &__back {
-        height: 133px;
-        border-radius: 4px;
-        width: 95px;
-        backface-visibility: hidden;
-        transform: rotateY(0);
-        transition: transform 500ms ease-in-out;
-    }
-
-    &__front {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 95px;
-        height: 133px;
-        background-color: $white-color;
-        color: rgba(0 0 0 / 10000%);
-        font-size: 24px;
-        line-height: 24px;
-        border-radius: 4px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: rotateY(180deg);
-        backface-visibility: hidden;
-        transition: transform 500ms ease-in-out;
-        box-sizing: border-box;
-    }
-
     &__top-left,
     &__down-right {
         display: flex;
@@ -83,6 +54,35 @@
         width: 6px;
         height: 6px;
     }
+}
+
+.card__back {
+    height: 133px;
+    border-radius: 4px;
+    width: 95px;
+    backface-visibility: hidden;
+    transform: rotateY(0);
+    transition: transform 500ms ease-in-out;
+}
+
+.card__front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95px;
+    height: 133px;
+    background-color: $white-color;
+    color: rgba(0 0 0 / 10000%);
+    font-size: 24px;
+    line-height: 24px;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    transition: transform 500ms ease-in-out;
+    box-sizing: border-box;
 }
 
 .card.visible .card__back {

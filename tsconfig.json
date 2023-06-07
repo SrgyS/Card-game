@@ -7,6 +7,10 @@
         "target": "es5",
         "allowJs": true,
         "moduleResolution": "node",
-        "sourceMap": true
-    }
+        "sourceMap": false,
+        "esModuleInterop": true,
+        "inlineSourceMap": true
+    },
+    "include": ["js/index.d.ts"],
+    "exclude": ["node_modules"]
 }

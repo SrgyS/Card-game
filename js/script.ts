@@ -4,7 +4,7 @@ import { renderGamePageComponent } from './components/game-page-component';
 import { renderResultPageComponent } from './components/result-page-component';
 import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes';
 import { Card } from '../js/helpers';
-let page = '';
+export let page = '';
 const appEl: HTMLElement | null = document.getElementById('app');
 
 interface Game {
@@ -25,7 +25,7 @@ export const game: Game = {
     isWin: null,
 };
 
-export const goToPage = (newPage: string) => {
+export const goToPage = (newPage: string): void => {
     if ([DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE].includes(newPage)) {
         if (newPage === DIFFICULTY_PAGE) {
             page = DIFFICULTY_PAGE;
