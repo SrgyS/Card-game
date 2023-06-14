@@ -9,7 +9,7 @@ import { goToPage, page } from '../js/script';
 // }));
 
 describe('goToPage', () => {
-    it('should go', () => {
+    it('should render DIFFICULTY_PAGE', () => {
         const newPage = DIFFICULTY_PAGE;
 
         goToPage(newPage);
