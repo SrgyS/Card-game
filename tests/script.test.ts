@@ -3,10 +3,13 @@ import { DIFFICULTY_PAGE } from '../js/routes';
 import { goToPage, page } from '../js/script';
 // import { renderApp } from '../js/script';
 
-// jest.mock('../js/script', () => ({
-//     ...jest.requireActual('../js/script'),
-//     renderApp: jest.fn(),
-// }));
+jest.mock('../js/script', () => {
+    const actual = jest.requireActual('../js/script');
+    return {
+        ...actual,
+        renderApp: jest.fn(),
+    };
+});
 
 describe('goToPage', () => {
     it('should render DIFFICULTY_PAGE', () => {
