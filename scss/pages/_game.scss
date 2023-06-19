@@ -8,32 +8,32 @@
         align-items: center;
         margin-bottom: 35px;
     }
+}
 
-    .timer {
+.timer {
+    display: flex;
+
+    &__block {
         display: flex;
+        flex-direction: column;
+    }
 
-        &__block {
-            display: flex;
-            flex-direction: column;
-        }
+    &__dot {
+        display: flex;
+        align-items: flex-end;
+    }
 
-        &__dot {
-            display: flex;
-            align-items: flex-end;
-        }
+    &__label {
+        font-size: 16px;
+        line-height: 16px;
+        text-align: end;
+        margin-right: 5px;
+    }
 
-        &__label {
-            font-size: 16px;
-            line-height: 16px;
-            text-align: end;
-            margin-right: 5px;
-        }
-
-        #seconds,
-        #minutes,
-        &__dot {
-            font-size: 64px;
-            line-height: 72px;
-        }
+    #seconds,
+    #minutes,
+    &__dot {
+        font-size: 64px;
+        line-height: 72px;
     }
 }

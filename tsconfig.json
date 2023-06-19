@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "strict": true, // Включает все жесткие проверки типов
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "esModuleInterop": true,
+        "inlineSourceMap": true
+    },
+    "include": ["js/index.d.ts"],
+    "exclude": ["node_modules"]
+}

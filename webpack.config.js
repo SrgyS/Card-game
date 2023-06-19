@@ -8,10 +8,23 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const mode =
     process.env.NODE_ENV === 'production' ? 'production' : 'development';
 module.exports = {
-    entry: './js/script.js',
+    entry: './js/script.ts',
     mode,
     module: {
         rules: [
+            {
+                test: /\.(js|jsx|ts|tsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript',
+                        ],
+                    },
+                },
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -31,10 +44,14 @@ module.exports = {
             },
         ],
     },
+    resolve: {
+        extensions: ['.ts', '.js'],
+    },
     devtool:
         process.env.NODE_ENV === 'production'
             ? 'hidden-source-map'
             : 'source-map',
+
     optimization: {
         minimizer: ['...', new CssMinimizerPlugin()],
     },
