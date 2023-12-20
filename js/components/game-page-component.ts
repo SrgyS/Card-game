@@ -1,9 +1,22 @@
-import { DIFFICULTY_PAGE } from '../routes.js';
+import { startTimer, stopTimer, gameTime, Card } from '../helpers';
+import { DIFFICULTY_PAGE, RESULT_PAGE } from '../routes';
+import { game } from '../script';
+interface SelectedCard {
+    element: Element;
+    index: number;
+}
 
-export function renderGamePageComponent({ appEl, goToPage, playCards }) {
+export function renderGamePageComponent({
+    appEl,
+    goToPage,
+    playCards,
+}: {
+    appEl: HTMLElement;
+    goToPage: (page: string) => void;
+    playCards: Card[];
+}) {
     const cardsHTML = playCards
         .map((card, index) => {
-            console.log(card);
             return `<div class="card visible" data-index="${index}">
                             <div class="card__back">
                                 <img src="./static/img/card-back.png" alt="card back">
@@ -51,20 +64,23 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
     appEl.innerHTML = appHtml;
 
     const cardElements = appEl.querySelectorAll('.card');
-    let selectedCards = [];
+    let selectedCards: SelectedCard[] = [];
     let matchedPairs = 0;
     cardElements.forEach((cardEl) => {
         cardEl.classList.remove('visible');
     });
+    let completedTimeout = false;
     setTimeout(() => {
         cardElements.forEach((cardEl) => {
             cardEl.classList.add('visible');
         });
     }, 500);
-    setTimeout(() => {
+    const showCardTime = setTimeout(() => {
         cardElements.forEach((cardEl) => {
             cardEl.classList.remove('visible');
         });
+        completedTimeout = true;
+        startTimer();
     }, 5000);
 
     cardElements.forEach((cardEl, index) => {
@@ -94,14 +110,21 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
 
                         if (matchedPairs === playCards.length / 2) {
                             setTimeout(() => {
-                                alert('Вы победили!');
-                                goToPage(DIFFICULTY_PAGE);
+                                stopTimer();
+                                game.gameTime = gameTime;
+                                game.gameStatus = RESULT_PAGE;
+                                game.isWin = true;
+                                goToPage(RESULT_PAGE);
                             }, 800);
                         }
                     } else {
                         setTimeout(() => {
-                            alert('Вы проиграли!');
-                            goToPage(DIFFICULTY_PAGE);
+                            stopTimer();
+                            console.log(gameTime);
+                            game.gameTime = gameTime;
+                            game.gameStatus = RESULT_PAGE;
+                            game.isWin = false;
+                            goToPage(RESULT_PAGE);
                         }, 800);
                     }
 
@@ -111,19 +134,27 @@ export function renderGamePageComponent({ appEl, goToPage, playCards }) {
         });
     });
 
-    document.querySelector('.game__btn').addEventListener('click', () => {
-        console.log('start');
-        goToPage(DIFFICULTY_PAGE);
-    });
+    const gameBtn = document.querySelector('.game__btn');
+    if (gameBtn !== null) {
+        gameBtn.addEventListener('click', () => {
+            if (!completedTimeout) {
+                clearTimeout(showCardTime);
+            }
+            stopTimer();
+            goToPage(DIFFICULTY_PAGE);
+        });
+    }
 }
 
-function getSuitSymbol(suit) {
-    const suitSymbols = {
-        Hearts: '<img src="./static/img/hearts.svg" alt="hearts">',
-        Diamonds: '<img src="./static/img/diamonds.svg" alt="diamonds">',
-        Clubs: '<img src="./static/img/clubs.svg" alt="clubs">',
-        Spades: '<img src="./static/img/spades.svg" alt="spades">',
-    };
+const suitSymbols: {
+    [key: string]: string;
+} = {
+    Hearts: '<img src="./static/img/hearts.svg" alt="hearts">',
+    Diamonds: '<img src="./static/img/diamonds.svg" alt="diamonds">',
+    Clubs: '<img src="./static/img/clubs.svg" alt="clubs">',
+    Spades: '<img src="./static/img/spades.svg" alt="spades">',
+};
 
+function getSuitSymbol(suit: string) {
     return suitSymbols[suit];
 }
