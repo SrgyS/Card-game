@@ -155,6 +155,6 @@ const suitSymbols: {
     Spades: '<img src="./static/img/spades.svg" alt="spades">',
 };
 
-function getSuitSymbol(suit: string) {
+export function getSuitSymbol(suit: string) {
     return suitSymbols[suit];
 }

@@ -4,7 +4,7 @@ import { renderGamePageComponent } from './components/game-page-component';
 import { renderResultPageComponent } from './components/result-page-component';
 import { DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE } from './routes';
 import { Card } from '../js/helpers';
-let page = '';
+export let page = '';
 const appEl: HTMLElement | null = document.getElementById('app');
 
 interface Game {
@@ -25,31 +25,34 @@ export const game: Game = {
     isWin: null,
 };
 
-export const goToPage = (newPage: string) => {
-    if ([DIFFICULTY_PAGE, GAME_PAGE, RESULT_PAGE].includes(newPage)) {
-        if (newPage === DIFFICULTY_PAGE) {
+export const goToPage = (newPage: string): void => {
+    let playCards;
+    switch (newPage) {
+        case DIFFICULTY_PAGE:
             page = DIFFICULTY_PAGE;
-            return renderApp();
-        }
+            renderApp();
+            break;
 
-        if (newPage === GAME_PAGE) {
-            const playCards = game.cards;
-            return renderGamePageComponent({
+        case GAME_PAGE:
+            playCards = game.cards;
+            renderGamePageComponent({
                 appEl: appEl ? appEl : document.createElement('div'),
                 goToPage,
                 playCards,
             });
-        }
 
-        if (newPage === RESULT_PAGE) {
-            return renderResultPageComponent({
+            break;
+
+        case RESULT_PAGE:
+            renderResultPageComponent({
                 appEl: appEl ? appEl : document.createElement('div'),
                 goToPage,
             });
-        }
-    }
+            break;
 
-    throw new Error('Страница не существует');
+        default:
+            throw new Error('Страница не существует');
+    }
 };
 
 export const renderApp = () => {
