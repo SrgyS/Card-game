@@ -1,5 +1,5 @@
-// import { it, describe, expect } from '@jest/globals';
-import { generateDeck, Card } from '../../js/helpers';
+import { Card, generateDeck } from '../../js/helpers';
+import { describe, expect, it } from '@jest/globals';
 
 describe('generateDeck', () => {
     it('Should generate a deck of cards with 6 cards for difficulty 1', () => {

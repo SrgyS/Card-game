@@ -14,6 +14,7 @@ module.exports = {
         ],
     },
     moduleNameMapper: {
+        '\\.(ts|tsx)$': 'ts-jest',
         '\\.(css|less)$': 'identity-obj-proxy',
     },
 };
