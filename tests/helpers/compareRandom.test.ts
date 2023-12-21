@@ -1,4 +1,5 @@
-// import { it, describe, expect } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
+
 import { compareRandom } from '../../js/helpers';
 
 describe('compareRandom', () => {
